@@ -1,0 +1,240 @@
+header{
+	margin-bottom: 2em;
+}
+
+button{
+	cursor: pointer;
+}
+
+main{
+	min-height: 80vh;
+    min-height: -webkit-calc(80vh - 80px);
+    min-height:    -moz-calc(80vh - 80px);
+    min-height:         calc(80vh - 80px);
+}
+
+footer{
+  display: block;
+  min-height: 100px;
+  width: 100%;
+}
+
+.zero{
+	margin: 0;
+	padding: 0;
+}
+
+/*navbar*/
+.bg-nav{
+	background: #06d6a0;
+}
+
+.logo{
+	padding: .27em 1em;
+	margin-left: 1em;
+}
+
+.nav-item{
+	text-align: center;
+}
+
+.nav-link{
+	display: inline-block;
+	width: 8em;
+	padding: 1em 0em;	
+	color: #ffffff !important;
+	border-top:solid 3px #06d6a0;
+	border-bottom:solid 3px #06d6a0;
+}
+
+.nav-link:hover{	
+	border-bottom:solid 3px #ef476f;
+}
+
+.dropdown-menu{
+	margin-left: -12% !important;
+	margin-top: 0 !important;
+	text-align: center;
+}
+
+.dropdown-item:hover{
+	background: #06d6a0;
+	color: #fff;
+}
+/*fim navbar*/
+
+/*pagina de cadastro*/
+.field-form{ 
+	margin-bottom: 50px;
+	padding-bottom: 1em;
+	background: #fff;
+	border: solid 1px #118ab2;
+}
+
+.legend{
+	width: 25%;
+	text-align: center;
+	font-size: 1.7em;
+	color: #fff;
+	margin-bottom: .8em;
+	background: #118ab2;
+}
+
+.text-height{
+	height: 118px;
+}
+
+.justificado{ /*justificar texto do termo de uso*/
+	text-align: justify;
+	background: #fff;
+	padding-bottom: 1em;
+}
+
+.btn-lg-green{/*botão de cadastrar usuarios*/
+	background: #affc41;
+	color: #fff;
+	font-size: 1.5em;
+	box-shadow: 4px 5px 0px rgba(0,0,0,.6);
+}
+
+.obgtr{/*aterisco de campos obrigatorios*/
+	color: red;
+}
+/*fim cadastro*/
+
+/*pagina de agendamento*/
+.lg-agenda{
+	padding-left: .3em;
+	font-size: 1.5em;
+	margin-left: -.6em;
+}
+
+.border-b{	
+	border-bottom: solid 2px #118ab2;
+}
+
+.border-t{	
+	border-top: solid 2px #118ab2;
+}
+
+.border-r-r{
+	border-radius: 0px;
+	border-bottom-right-radius: 8px;
+	border-top-right-radius: 8px;
+	border: none;
+}
+
+.border-r-l{
+	border-radius: 0px;
+	border-bottom-left-radius: 8px;
+	border-top-left-radius: 8px;
+}
+
+.border-r-n{
+	border-radius: 0px;
+}
+
+.mg-table{
+	margin-top: 0;
+}
+
+.th-table{
+	background: #118ab2;
+	color: #fff;
+	border: solid 2px #118ab2;
+}
+
+.tr-table{
+	border-bottom: solid 2px rgba(7, 59, 76, .8);
+}
+
+.title-ag{
+	background: #ffd166;
+	margin-left: 12.7%;
+	padding: 0;
+	height: 3em;
+	margin-top: 2.8em;
+}
+
+.title-ag h6{
+	padding: 1em 0em;
+	text-align: center;
+	color: #fff;
+}
+
+.my-modal{
+	width: 70%;
+	padding: 2em 2em;
+	align-items: center;
+}
+
+.padding-1{
+	padding: 1em;
+}
+
+.load{
+	position: absolute;
+	width: 100%;
+	background: url(../img/loader.gif) center no-repeat;
+	height: 6em;
+	margin-top: 3em;	
+	display: none;
+}
+
+/*fim agendamento*/
+
+/*rodapé*/
+.footer{
+	background: #06d6a0;
+}
+
+.footer h5 {	
+	color: #fff;
+	text-align: center;	
+	padding: 2em;
+	font-size: 1em;
+}
+
+.titulo{
+	padding: .5em 0em;
+	background: #118ab2;
+}
+
+@media (max-width: 991px){
+	/*ajustar fundo*/
+	.fundo{
+		background: none;
+		padding-top: 3em;
+		padding-bottom: 3em;
+		box-shadow: 0px 0px 0px rgba(0,0,0,.0);
+	}
+	/*fim fundo*/
+
+	/*ajustar menu*/
+	.logo{
+		margin-left: 1em;
+	}
+
+	.nav-item{
+		width: 100%;
+		margin-left: 2% !important;
+	}
+
+	.dropdown-menu{
+		margin-left: 0% !important;
+		text-align: center;
+	}
+	/*fim menu*/
+
+	/*cadastro/legenda do fildset*/
+	.legend{
+		width: 60%;
+		text-align: center;
+	}
+	/*fim cadastro*/
+
+	/*modal agendamento*/
+	.modal-mobile{
+		width: 100% !important;
+	}
+}
