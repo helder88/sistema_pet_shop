@@ -35,4 +35,39 @@ $(document).ready(function(e){
 		}
 	});
 //____________________________________________________________________
+	//cadastro
+	//mascaras e calendario dos forms de data.
+	 $('#telefone').mask("(99) 99999-9999");
+	 $('#whatsapp').mask("(99) 99999-9999");
+	 $('#data_nasc').mask("99/99/9999"); 
+	 $('#data_pet').mask("99/99/9999");  
+
+	 $( function() {
+		$( "#data_nasc").datepicker({
+			showOtherMonths: true,
+    		selectOtherMonths: true,
+    		changeYear: true,
+			minDate: "-100Y",
+			maxDate: "-18Y",
+        	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        	dateFormat: 'dd/mm/yy'
+		});
+	});
+
+	 $( function() {
+		$( "#data_pet").datepicker({
+			showOtherMonths: true,
+    		selectOtherMonths: true,
+			changeYear: true,
+			minDate: "-30Y",
+			maxDate: 0,
+        	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        	dateFormat: 'dd/mm/yy'
+		});
+	});
+//____________________________________________________________________
 });

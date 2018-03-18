@@ -40,7 +40,7 @@
 							<label for="grupo">Grupo: <span class="obgtr">*</span></label>
 							<select name="grupo" class="form-control" id="grupo" required>
 								<option value="">Selecione</option>
-								<option value="Higiene">Higienico</option>
+								<option value="Higiene">Higiênico</option>
 								<option value="Estético">Estético</option>
 								<option value="Veterinário">Veterinário</option>
 							</select> 

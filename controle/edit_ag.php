@@ -1,6 +1,8 @@
 <?php 
 	include("conexao.php");
+
 	$acao = $_POST['acao'];
+	
 	if ($acao == 1) {
 		$nv_data = $_POST['nv-data'];
 		$nv_hora = $_POST['nv-hora'];

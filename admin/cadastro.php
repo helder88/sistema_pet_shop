@@ -16,15 +16,17 @@
 	<header>
 		<?php include ("../pgs/menu_admin.html"); ?>
 	</header>
-	<main class="container">		
+	<main class="container">	
 		<form action="../controle/cadastrar.php" method="post" enctype="multipart/form-data" class="row justify-content-md-center">
-			<fieldset class="col-md-12 field-form">
+			<fieldset class="col-md-12 field-form">				
 				<legend class="legend">Dados Pessoais</legend>				
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="nome">Nome: <span class="obgtr">*</span></label>
-							<input type="text" name="nome" class="form-control" id="nome" placeholder="Nome completo" required>
+							<input type="text" name="nome" class="form-control" id="nome" placeholder="Primeiro nome" required>
+							<label for="nome">Sobrenome: <span class="obgtr">*</span></label>
+							<input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Sobrenome" required>
 						</div>
 						<div class="form-group date">
 							<label for="data_nacs">Data de Nascimento: <span class="obgtr">*</span></label>
@@ -41,20 +43,20 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="rua">Rua: <span class="obgtr">*</span></label>
-							<input type="text" name="rua" class="form-control" id="rua" required>
-						</div>
-						<div class="form-group">
-							<label for="numero">Número: <span class="obgtr">*</span></label>
-							<input type="text" name="numero" class="form-control" id="numero" required>
+							<label for="cidade">Cidade: <span class="obgtr">*</span></label>
+							<input type="text" name="cidade" class="form-control" id="cidade" required>
 						</div>
 						<div class="form-group">
 							<label for="bairro">Bairro: <span class="obgtr">*</span></label>
 							<input type="text" name="bairro" class="form-control" id="bairro" required>
 						</div>
 						<div class="form-group">
-							<label for="cidade">Cidade: <span class="obgtr">*</span></label>
-							<input type="text" name="cidade" class="form-control" id="cidade" required>
+							<label for="rua">Rua: <span class="obgtr">*</span></label>
+							<input type="text" name="rua" class="form-control" id="rua" required>
+						</div>
+						<div class="form-group">
+							<label for="numero">Número: <span class="obgtr">*</span></label>
+							<input type="text" name="numero" class="form-control" id="numero" required>
 						</div>
 					</div>
 				</div>
@@ -65,7 +67,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="nomeAnimal">Nome: <span class="obgtr">*</span></label>
-							<input type="text" name="nome_pet" class="form-control" id="nomeAnimal" required>
+							<input type="text" name="pet" class="form-control" id="nomeAnimal" required>
 						</div>
 						<div class="form-group">
 							<label for="especie">Especie: <span class="obgtr">*</span></label>
@@ -127,46 +129,9 @@
 				</div>
 			</fieldset>
 			<div class="col-md-6 form-group">
-				<button type="submit" class="btn btn-md btn-block btn-primary" id="btn-cadastrar" title="Verifique sua senha">CADASTRAR</button>
+				<input type="submit" class="btn btn-md btn-block btn-primary" id="btn-cadastrar" title="Verifique sua senha" name="cadastro" value="CADASTRAR"/>
 			</div>
 		</form>
 	</main>
-
 	<?php include("../pgs/footer.html"); ?>
-
-	<script type="text/javascript">
-		//mascaras e calendario dos forms de data.
-		 $('#telefone').mask("(99) 99999-9999");
-		 $('#whatsapp').mask("(99) 99999-9999");
-		 $('#data_nacs').mask("99/99/9999"); 
-		 $('#data_pet').mask("99/99/9999");  
-
-		 $( function() {
-			$( "#data_nacs").datepicker({
-				showOtherMonths: true,
-        		selectOtherMonths: true,
-        		changeYear: true,
-				minDate: "-100Y",
-				maxDate: "-18Y",
-            	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-				monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-            	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-            	dateFormat: 'dd/mm/yy'
-			});
-		});
-
-		 $( function() {
-			$( "#data_pet").datepicker({
-				showOtherMonths: true,
-        		selectOtherMonths: true,
-				changeYear: true,
-				minDate: "-30Y",
-				maxDate: 0,
-            	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-				monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-            	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-            	dateFormat: 'dd/mm/yy'
-			});
-		});
-	</script>
 </html>
