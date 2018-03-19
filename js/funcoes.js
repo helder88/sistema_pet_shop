@@ -70,4 +70,71 @@ $(document).ready(function(e){
 		});
 	});
 //____________________________________________________________________
+
+//agendamento cliente
+	$('.data').mask("99/99/9999"); 
+		
+	$(".btn-rg").click(function(){//id do agendamendo no input hidem para reagendar
+		$("#id_ag").val($(this).val());
+	});
+
+	$(".btn-cl").click(function(){//id do agendamendo no input hidem para cancelar
+	  	$("#id_ag_cl").val($(this).val());
+	});
+
+	$("#btn-ag").click(function(){//mostrar agendamentos existentes
+		$(".tb-ag").slideToggle();
+	});
+
+	$( function() {//form de reagendamento no modal
+		$( "#nv-data").datepicker({
+			showOtherMonths: true,
+    		selectOtherMonths: true,
+			minDate: 0,
+			maxDate: "+4M",
+        	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        	dateFormat: 'dd/mm/yy'
+		});
+	});
+	
+	$( function() {//form de novo agendamento
+		$( "#data-ag").datepicker({
+			showOtherMonths: true,
+    		selectOtherMonths: true,
+			minDate: 0,
+			maxDate: "+4M",
+        	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        	dateFormat: 'dd/mm/yy'
+		});
+	});	
+
+	$(document).ready(function(e) {
+		$("#data-ag").change(function(){//exibir horarios disponiveis - novo agendamento
+			var data = $(this).val();
+			$.ajax({
+				type:"POST",
+				url:"../controle/busca_hora.php?data="+data,
+				dataType:"text",
+				success: function(res){
+					$("#hora-ag").children(".hora").remove();
+					$("#hora-ag").append(res);
+				}
+			});
+		});
+
+		$("#nv-data").change(function(){//exibir horarios disponiveis - reagendamento
+			var data = $(this).val();
+			$.ajax({
+				type:"POST",
+				url:"../controle/busca_hora.php?data="+data,
+				dataType:"text",
+				success: function(res){
+					$("#nv-hora").children(".hora").remove();
+					$("#nv-hora").append(res);
+				}
+			});
+		});
+	});
 });

@@ -1,20 +1,29 @@
 <?php 
 	include("conexao.php");
+	include("sessao.php");
 
-	$acao = $_POST['acao'];
-	
-	if ($acao == 1) {
-		$nv_data = $_POST['nv-data'];
-		$nv_hora = $_POST['nv-hora'];
-		$nv_serv = $_POST['nv-servico'];
-		$nv_pet = $_POST['nv-pet'];
-		$id_ag = $_POST['id_ag'];
+    $recebido = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+    $filtrado = array_map('strip_tags', $recebido);
+    $dados = array_map('trim', $filtrado);
 
-		$sql = $con -> query("UPDATE `agenda` SET `data_ag`='$nv_data', `hora`='$nv_hora', `servico`='$nv_serv', `pet`='$nv_pet' WHERE `id_ag`='$id_ag'");
-		echo "<meta http-equiv='refresh' content='0, url=../cliente/agenda.php'>";
-	}elseif ($acao == 2) {
-		$id_ag = $_POST['id_ag_cl'];
-		$sql = $con -> query("DELETE FROM `agenda` WHERE `id_ag`='$id_ag'");
-		echo "<meta http-equiv='refresh' content='0, url=../cliente/agenda.php'>";
-	}
+    #var_dump($dados);
+
+    if (in_array('', $dados)) {
+    	$_SESSION['msg'] = "Existem campos vazios!";
+		echo "<script>history.back();</script>";
+    	
+    }else{
+    	if ($dados['acao'] == 1) {
+			$sql = $con -> query("UPDATE `agenda` SET `data_ag`='".$dados['nv-data']."', `hora`='".$dados['nv-hora']."', `servico`='".$dados['nv-servico']."', `pet`='".$dados['nv-pet']."' WHERE `id_ag`='".$dados['id_ag']."'");
+
+			$_SESSION['msg'] = "Reagendado com sucesso!";
+			header("Location: ../cliente/agenda.php");
+
+		}elseif ($dados['acao']== 2) {
+			$sql = $con -> query("DELETE FROM `agenda` WHERE `id_ag`='".$dados['id_ag_cl']."'");
+
+			$_SESSION['msg'] = "Agendamento cancelado com sucesso!";
+			header("Location: ../cliente/agenda.php");
+		}
+    }
 ?>

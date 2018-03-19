@@ -34,7 +34,7 @@
 						<h4 class="text-center text-white">Agendamentos existentes: <button class="btn btn-sm btn-secondary" id="btn-ag" style="color: #ffd166" title="Click para exibir">EXIBIR</button></h4>		
 					</div>
 				</div>
-			</div>
+			</div>			
 			<table class="table table-hover table-responsive col-md-7 col-sm-12 col-xs-12 col-12 text-center tb-ag" style="height: 20em; display: none;">
 			  	<thead>
 			    	<tr>
@@ -55,13 +55,23 @@
 				      		echo "<td>".$agenda['servico']."</td>";
 				      		echo "<td>".$agenda['pet']."</td>";
 				      		echo '<td><button value="'.$agenda['id_ag'].'" class="btn btn-sm btn-info btn-block btn-rg" data-toggle="modal" data-target="#reagendar">Reagendar</button></td>';
-				      		echo '<td><button value="'.$agenda['id_ag'].'" class="btn btn-sm btn-danger btn-block btn-cl" data-toggle="modal" data-target="#cancelar" id="btn-cl">Excluir</button></td>';
+				      		echo '<td><button value="'.$agenda['id_ag'].'" class="btn btn-sm btn-danger btn-block btn-cl" data-toggle="modal" data-target="#cancelar" id="btn-cl">Cancelar</button></td>';
 				    		echo "</tr>";
 						}
 					 ?>
 			  	</tbody>
 			</table>	
 		</div>
+
+		<div class="row justify-content-center mb-4">
+			<?php 
+				if(isset($_SESSION['msg'])){
+					echo "<div class='alert alert-success text-center' role='alert'>".$_SESSION['msg']."</div>";
+					unset($_SESSION['msg']);
+				}			 
+			  ?>
+		 </div>
+
 		<form action="../controle/cadastrar_ag.php" method="post" class="row justify-content-md-center">
 			<fieldset class="col-md-12 field-form">
 				<legend class="legend">Novo Agendamento</legend>				
@@ -93,7 +103,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="data-ag">Data:</label>
-							<input type="text" name="data-ag" class="form-control data" id="data-ag">
+							<input type="text" name="data-ag" class="form-control data" id="data-ag" required>
 						</div>
 						<div class="form-group">
 							<label for="hora-ag">Horário:</label>
@@ -159,10 +169,10 @@
 				    </div>
 		    		<div class="row padding-1">
 		      			<div class="col-md-6 col-xs-6 col-sm-6 col-6">
-		      				<button type="submit" class="btn btn-md btn-block btn-success">Agendar</button>
+		      				<button type="submit" class="btn btn-md btn-block btn-success">Confirmar</button>
 		      			</div>
 		      			<div class="col-md-6 col-xs-6 col-sm-6 col-6">
-		      				<button type="button" class="btn btn-md btn-block btn-warning" data-dismiss="modal" aria-label="Close">Cancelar</button>
+		      				<button type="button" class="btn btn-md btn-block btn-warning" data-dismiss="modal" aria-label="Close">Fechar</button>
 		      			</div>
 		    		</div>
 	    		</form>      		
@@ -187,11 +197,11 @@
 				    </div>
 		    		<div class="row padding-1">
 		      			<div class="col-md-6 col-xs-6 col-sm-6 col-6">
-		      				<button type="submit" class="btn btn-md btn-block btn-danger">Excluir</button>
+		      				<button type="submit" class="btn btn-md btn-block btn-success">Sim</button>
 		      			</div>
 		      			<div class="col-md-6 col-xs-6 col-sm-6 col-6">
 		      				<button type="button" class="btn btn-md btn-block btn-warning" data-dismiss="modal" aria-label="Close">
-			          	<span aria-hidden="true">Cancelar</button>
+			          	<span aria-hidden="true">Não</button>
 		      			</div>
 		    		</div>
 	    		</form>      		
@@ -200,73 +210,5 @@
 	</div>
 
 	<?php include("../pgs/footer.html"); ?>
-
-	<script type="text/javascript">
-		$('.data').mask("99/99/9999"); 
-		
-		$(".btn-rg").click(function(){//id do agendamendo no input hidem para reagendar
-			$("#id_ag").val($(this).val());
-		});
-
-		$(".btn-cl").click(function(){//id do agendamendo no input hidem para cancelar
-		  	$("#id_ag_cl").val($(this).val());
-		});
-
-		$("#btn-ag").click(function(){//mostrar agendamentos existentes
-			$(".tb-ag").slideToggle();
-		});
-
-		$( function() {//form de reagendamento no modal
-			$( "#nv-data").datepicker({
-				showOtherMonths: true,
-        		selectOtherMonths: true,
-				minDate: 0,
-				maxDate: "+4M",
-            	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-            	dateFormat: 'dd/mm/yy'
-			});
-		});
-		
-		$( function() {//form de novo agendamento
-			$( "#data-ag").datepicker({
-				showOtherMonths: true,
-        		selectOtherMonths: true,
-				minDate: 0,
-				maxDate: "+4M",
-            	monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            	dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
-            	dateFormat: 'dd/mm/yy'
-			});
-		});	
-
-		$(document).ready(function(e) {
-			$("#data-ag").change(function(){//exibir horarios disponiveis - novo agendamento
-				var data = $(this).val();
-				$.ajax({
-					type:"POST",
-					url:"../controle/busca_hora.php?data="+data,
-					dataType:"text",
-					success: function(res){
-						$("#hora-ag").children(".hora").remove();
-						$("#hora-ag").append(res);
-					}
-				});
-			});
-
-			$("#nv-data").change(function(){//exibir horarios disponiveis - reagendamento
-				var data = $(this).val();
-				$.ajax({
-					type:"POST",
-					url:"../controle/busca_hora.php?data="+data,
-					dataType:"text",
-					success: function(res){
-						$("#nv-hora").children(".hora").remove();
-						$("#nv-hora").append(res);
-					}
-				});
-			});
-		});
-	</script>
 </body>
 </html>
